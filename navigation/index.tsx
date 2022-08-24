@@ -30,6 +30,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 
 import HomeScreen from "../screens/HomeScreen";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
+import UsersScreen from "../screens/UsersScreen";
 
 import {
   RootStackParamList,
@@ -79,6 +80,14 @@ function RootNavigator() {
           headerBackTitleVisible: false,
         }}
       />
+      {/* users screen */}
+      <Stack.Screen
+        name="Users"
+        component={UsersScreen}
+        options={{
+          title: "Users",
+        }}
+      />
 
       <Stack.Screen
         name="NotFound"
@@ -94,7 +103,9 @@ function RootNavigator() {
 
 const CustomeHeader = () => {
   const { width } = useWindowDimensions();
-  // console.log(width, "width");
+
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -127,12 +138,14 @@ const CustomeHeader = () => {
         color={"whitesmoke"}
         style={{ marginHorizontal: 10 }}
       />
-      <Feather
-        name="edit-2"
-        size={24}
-        color={"whitesmoke"}
-        style={{ marginHorizontal: 10 }}
-      />
+      <Pressable onPress={() => navigation.navigate("Users")}>
+        <Feather
+          name="edit-2"
+          size={24}
+          color={"whitesmoke"}
+          style={{ marginHorizontal: 10 }}
+        />
+      </Pressable>
     </View>
   );
 };
